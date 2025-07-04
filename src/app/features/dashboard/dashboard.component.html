@@ -1,0 +1,8 @@
+<p-tabView [(activeIndex)]="selectedTabIndex" (onChange)="onTabChange($event)">
+  <p-tabPanel header="Starships">
+    <app-starship></app-starship>
+  </p-tabPanel>
+  <p-tabPanel header="Vehicles">
+    <app-vehicle></app-vehicle>
+  </p-tabPanel>
+</p-tabView> 

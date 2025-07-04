@@ -1,0 +1,38 @@
+@if (error) {
+<ng-container [ngTemplateOutlet]="err"></ng-container>
+} @else if (loading) {
+<ng-container [ngTemplateOutlet]="load"></ng-container>
+} @else {
+<ng-container [ngTemplateOutlet]="view"></ng-container>
+}
+
+<ng-template #err>
+  <p class="error">{{ error }}</p>
+</ng-template>
+
+<ng-template #load>
+  <p>Loading...</p>
+</ng-template>
+
+<ng-template #view>
+  <p-table [value]="data">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Model</th>
+        <th>Manufacturer</th>
+        <th>Details</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-row>
+      <tr>
+        <td>{{ row.name }}</td>
+        <td>{{ row.model }}</td>
+        <td>{{ row.manufacturer }}</td>
+        <td>
+          <button pButton type="button" label="Details" (click)="onViewDetails(row)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</ng-template>
