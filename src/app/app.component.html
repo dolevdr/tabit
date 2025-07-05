@@ -1,5 +1,5 @@
 <div class="theme-toggle-container">
-  <p-inputSwitch [(ngModel)]="isDarkMode" (ngModelChange)="toggleDarkMode($event)"></p-inputSwitch>
-  <span class="theme-toggle-label">{{ isDarkMode ? 'Dark' : 'Light' }} Mode</span>
+  <p-inputSwitch [ngModel]="isDarkMode()" (ngModelChange)="toggleDarkMode($event)"></p-inputSwitch>
+  <span class="theme-toggle-label">{{ isDarkMode() ? 'Dark' : 'Light' }} Mode</span>
 </div>
 <router-outlet></router-outlet>
