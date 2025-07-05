@@ -18,7 +18,7 @@
   </div>
   }
 
-  @if (filteredData().length > 0) {
+  @if (filteredData().length) {
   <div class="listing-table__container" appInfiniteScroll [disabled]="loading()" [hasPreviousData]="hasPreviousData()"
     [hasNextData]="hasMoreData()" (scrolledToTop)="loadPreviousEvent.emit()" (scrolledToBottom)="loadMoreEvent.emit()">
     <p-table [value]="filteredData()">

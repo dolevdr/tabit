@@ -35,7 +35,21 @@ export const StarshipStore = signalStore(
     withComputed((state) => ({
         starships: computed(() => {
             const pageResults = state.pageResults();
-            return Object.entries(pageResults).sort(([page1], [page2]) => +page1 - +page2).flatMap(([, value]) => value);
+            return Object.entries(pageResults).sort(([page1], [page2]) => +page1 - +page2).flatMap(([, value]) => value).map(
+                (starship) => ({
+                    ...starship,
+                    created: new Date(starship.created).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    }),
+                    edited: new Date(starship.edited).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    })
+                })
+            );
         }),
 
         starshipsCount: computed(() => {
