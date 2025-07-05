@@ -1,1 +1,10 @@
-<app-listing-table [data]="starships"></app-listing-table> 
+<app-listing-table [data]="starshipStore.starships()" [loading]="starshipStore.loading()"
+  [error]="starshipStore.error()" [hasMoreData]="starshipStore.hasNextData()"
+  [hasPreviousData]="starshipStore.hasPreviousData()" [totalCount]="starshipStore.totalCount()" [enableSearch]="true"
+  (loadMoreEvent)="onLoadMore()" (loadPreviousEvent)="onLoadPrevious()" (viewDetailsEvent)="onViewDetails($event)">
+</app-listing-table>
+
+@if (showDetailsDialog) {
+<app-item-details-dialog [visible]="true" [loading]="starshipStore.loading()" [films]="films() ?? []"
+  [item]="selectedStarship" (visibleChange)="showDetailsDialog = $event">
+</app-item-details-dialog>}

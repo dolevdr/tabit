@@ -1,1 +1,10 @@
-<app-listing-table [data]="vehicles"></app-listing-table> 
+<app-listing-table [data]="vehicleStore.vehicles()" [loading]="vehicleStore.loading()" [error]="vehicleStore.error()"
+    [hasMoreData]="vehicleStore.hasNextData()" [hasPreviousData]="vehicleStore.hasPreviousData()"
+    [totalCount]="vehicleStore.totalCount()" [enableSearch]="true" (loadMoreEvent)="onLoadMore()"
+    (loadPreviousEvent)="onLoadPrevious()" (viewDetailsEvent)="onViewDetails($event)">
+</app-listing-table>
+
+@if (showDetailsDialog) {
+<app-item-details-dialog [visible]="true" [loading]="vehicleStore.loading()" [films]="films() ?? []"
+    [item]="selectedVehicle" (visibleChange)="showDetailsDialog = $event">
+</app-item-details-dialog>}

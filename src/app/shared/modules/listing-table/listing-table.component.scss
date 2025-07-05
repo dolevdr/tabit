@@ -1,20 +1,98 @@
-p-table {
-    width: 100%;
-    margin: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
+.listing-table {
+    &__total-count {
+        font-weight: bold;
+        font-size: 16px;
+        color: #666;
+        display: block;
+        margin-bottom: 16px;
+    }
 
-    th,
-    td {
-        width: 25%;
+    &__container {
+        max-height: 500px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    &__loading {
+        text-align: center;
+        padding: 20px;
+        margin: 10px 0;
+
+        &--more {
+            color: #666;
+            font-style: italic;
+        }
+
+        &--initial {
+            color: #333;
+            font-weight: 500;
+        }
+    }
+
+    &__message {
+        text-align: center;
+        padding: 20px;
+        margin: 10px 0;
+
+        &--error {
+            color: #d32f2f;
+            background-color: #ffebee;
+            border-radius: 4px;
+        }
+
+        &--no-more {
+            color: #999;
+            font-style: italic;
+        }
+
+        &--empty {
+            color: #666;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 40px 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+    }
+
+    &__search {
+        margin-bottom: 1rem;
+
+        &-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            background-color: #ffffff;
+            color: #000000;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+            &:focus {
+                outline: none;
+                border-color: #007bff;
+                box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+            }
+
+            &::placeholder {
+                color: #6c757d;
+                opacity: 1;
+            }
+
+            &:hover {
+                border-color: #b3b3b3;
+            }
+        }
     }
 }
 
-.error {
-    color: #d7263d;
-    background: #fff0f3;
-    padding: 1rem;
-    border-radius: 6px;
-    margin: 1rem 0;
+p-tag {
+    padding: 12px 20px;
+    font-size: 16px;
     font-weight: 600;
-    text-align: center;
+    margin-bottom: 20px;
+    display: inline-block;
 }

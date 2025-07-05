@@ -1,0 +1,33 @@
+.item-details {
+    &__field-row {
+        display: flex;
+        margin-bottom: 12px;
+        padding: 8px 0;
+        border-bottom: 1px solid #f0f0f0;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    &__field-label {
+        font-weight: 600;
+        color: #333;
+        min-width: 150px;
+        margin-right: 16px;
+
+        &--dark {
+            color: #ffffff;
+        }
+    }
+
+    &__field-value {
+        flex: 1;
+        color: #666;
+        word-break: break-word;
+
+        &--dark {
+            color: #e0e0e0;
+        }
+    }
+}
