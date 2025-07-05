@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { SkeletonModule } from 'primeng/skeleton';
@@ -10,7 +10,8 @@ import { BaseItem } from '../../types/table/base-item';
     standalone: true,
     imports: [CommonModule, DialogModule, ButtonModule, SkeletonModule],
     templateUrl: './item-details-dialog.component.html',
-    styleUrls: ['./item-details-dialog.component.scss']
+    styleUrls: ['./item-details-dialog.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemDetailsDialogComponent {
     item = input<BaseItem | null>(null);
@@ -26,8 +27,7 @@ export class ItemDetailsDialogComponent {
 
     isDarkMode = (localStorage.getItem('mode') ?? 'light') === 'dark'
 
-
-    onVisibleChange(isVisible: boolean) {
+    onVisibleChange(isVisible: boolean): void {
         this.visible.set(isVisible);
     }
 } 

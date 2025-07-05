@@ -17,11 +17,11 @@ export class InfiniteScrollDirective implements AfterViewInit, OnDestroy {
 
     constructor(private elementRef: ElementRef) { }
 
-    ngAfterViewInit() {
+    ngAfterViewInit(): void {
         this.elementRef.nativeElement.addEventListener('scroll', this.scrollHandler);
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this.elementRef.nativeElement.removeEventListener('scroll', this.scrollHandler);
     }
 

@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@angular/core';
 import { BaseItem } from '../../shared/types/table/base-item';
 import { VehicleStore } from './state/vehicle.state';
 import { Vehicle } from './types/vehicle.types';
@@ -6,7 +6,8 @@ import { Vehicle } from './types/vehicle.types';
 @Component({
     selector: 'app-vehicle',
     standalone: false,
-    templateUrl: './vehicle.component.html'
+    templateUrl: './vehicle.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VehicleComponent implements OnInit {
     vehicleStore = inject(VehicleStore);
@@ -18,19 +19,19 @@ export class VehicleComponent implements OnInit {
         return isLoading ? null : films;
     });
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.vehicleStore.loadVehicles({ reset: true });
     }
 
-    onLoadMore() {
+    onLoadMore(): void {
         this.vehicleStore.loadMoreVehicles();
     }
 
-    onLoadPrevious() {
+    onLoadPrevious(): void {
         this.vehicleStore.loadPreviousVehicles();
     }
 
-    onViewDetails(vehicle: BaseItem) {
+    onViewDetails(vehicle: BaseItem): void {
         const vehicleData = vehicle as Vehicle;
         this.vehicleStore.loadFilms(vehicleData.films);
         const { pilots, ...noPilots } = vehicleData;

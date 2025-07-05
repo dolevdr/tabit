@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Output, computed, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output, computed, input, signal } from '@angular/core';
 import { BaseItem } from '../../types/table/base-item';
 
 @Component({
   selector: 'app-listing-table',
   standalone: false,
   templateUrl: './listing-table.component.html',
-  styleUrls: ['./listing-table.component.scss']
+  styleUrls: ['./listing-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListingTableComponent {
   data = input<BaseItem[]>([]);
@@ -34,11 +35,11 @@ export class ListingTableComponent {
     );
   });
 
-  onViewDetails(item: BaseItem) {
+  onViewDetails(item: BaseItem): void {
     this.viewDetailsEvent.emit(item);
   }
 
-  onSearch(event: Event) {
+  onSearch(event: Event): void {
     const target = event.target as HTMLInputElement;
     this.searchTerm.set(target.value);
   }

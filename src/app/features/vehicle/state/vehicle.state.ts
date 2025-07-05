@@ -158,7 +158,7 @@ export const VehicleStore = signalStore(
             loadVehicles,
             loadFilms,
 
-            loadMoreVehicles: () => {
+            loadMoreVehicles: (): void => {
                 if (store.hasNextPage() && !store.loading()) {
                     const currentPageResults = store.pageResults();
                     const currentPages = Object.keys(currentPageResults).map(Number).sort((a, b) => a - b);
@@ -173,7 +173,7 @@ export const VehicleStore = signalStore(
                 }
             },
 
-            loadPreviousVehicles: () => {
+            loadPreviousVehicles: (): void => {
                 const currentPageResults = store.pageResults();
                 const currentPages = Object.keys(currentPageResults).map(Number).sort((a, b) => a - b);
 

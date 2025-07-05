@@ -128,7 +128,7 @@ export const StarshipStore = signalStore(
         return {
             loadStarships,
 
-            loadMoreStarships: () => {
+            loadMoreStarships: (): void => {
                 if (store.hasNextPage() && !store.loading()) {
                     const currentPageResults = store.pageResults();
                     const currentPages = Object.keys(currentPageResults).map(Number).sort((a, b) => a - b);
@@ -143,7 +143,7 @@ export const StarshipStore = signalStore(
                 }
             },
 
-            loadPreviousStarships: () => {
+            loadPreviousStarships: (): void => {
                 const currentPageResults = store.pageResults();
                 const currentPages = Object.keys(currentPageResults).map(Number).sort((a, b) => a - b);
 
