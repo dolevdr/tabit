@@ -19,11 +19,11 @@ export class ItemDetailsDialogComponent {
     item = input<BaseItem | null>(null);
     visible = model<boolean>(false);
     loading = input<boolean>(false);
-    films = input<string[]>([]);
+    films = input<string[] | null>(null);
 
     itemDetails = computed(() => {
         const item = this.item();
-        if (!item) return null;
+        if (!item || !this.films()) return null;
         return Object.entries(item).map(([key, value]) => ({ key: key.replaceAll('_', ' '), value }))
     });
 

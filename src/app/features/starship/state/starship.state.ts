@@ -1,7 +1,7 @@
 import { computed, inject } from '@angular/core';
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { catchError, debounceTime, delay, distinctUntilChanged, forkJoin, map, of, switchMap, tap } from 'rxjs';
+import { catchError, debounceTime, delay, distinctUntilChanged, finalize, forkJoin, map, of, switchMap, tap } from 'rxjs';
 import { StarWarsApiService } from '../../../shared/services/star-wars-api.service';
 import { Starship } from '../types/starship.types';
 
@@ -177,11 +177,14 @@ export const StarshipStore = signalStore(
                         return forkJoin(filmRequests).pipe(
                             distinctUntilChanged(),
                             tap((films) => {
-                                patchState(store, { films: films.filter(Boolean), loading: false });
+                                patchState(store, { films: films.filter(Boolean) });
                             }),
                             catchError(error => {
-                                return of([]);
+                                return of(null);
                             }),
+                            finalize(() => {
+                                patchState(store, { loading: false });
+                            })
                         );
                     })
                 )

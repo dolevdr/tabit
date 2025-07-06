@@ -5,6 +5,6 @@
 </app-listing-table>
 
 @if (showDetailsDialog) {
-<app-item-details-dialog [visible]="true" [loading]="vehicleStore.loading()" [films]="films() ?? []"
-    [item]="selectedVehicle" (visibleChange)="showDetailsDialog = $event">
+<app-item-details-dialog [visible]="true" [loading]="vehicleStore.loading()" [films]="films()"
+    [item]="films() ? selectedVehicle : null" (visibleChange)="showDetailsDialog = $event">
 </app-item-details-dialog>}

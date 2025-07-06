@@ -1,6 +1,5 @@
 <p-dialog [style]="{width: '600px'}" [visible]="visible()" [header]="item()?.name || 'Item Details'" [modal]="true"
     (visibleChange)="onVisibleChange($event)">
-
     @if (loading()) {
     <p-skeleton height="200px" width="100%"></p-skeleton>
     } @else if (!item()) {

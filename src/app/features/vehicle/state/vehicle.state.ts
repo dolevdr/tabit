@@ -15,7 +15,7 @@ interface VehicleState {
     totalCount: number;
     pageResults: Record<number, Vehicle[]>;
     firstLoadedPage: number;
-    films: string[];
+    films: string[] | null;
 }
 
 const initialState: VehicleState = {
@@ -26,7 +26,7 @@ const initialState: VehicleState = {
     totalCount: 0,
     pageResults: {},
     firstLoadedPage: 1,
-    films: []
+    films: null
 };
 
 export const VehicleStore = signalStore(
@@ -145,7 +145,7 @@ export const VehicleStore = signalStore(
                             patchState(store, { films: films.filter(Boolean) });
                         }),
                         catchError(error => {
-                            return of([]);
+                            return of(null);
                         }),
                         finalize(() => {
                             patchState(store, { loading: false });
