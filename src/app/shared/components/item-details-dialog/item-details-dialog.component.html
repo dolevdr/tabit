@@ -8,9 +8,9 @@
     } @else {
     <div class="item-details">
         <div class="item-details__field-row" *ngFor="let field of itemDetails()">
-            <div class="item-details__field-label" [ngClass]="{'item-details__field-label--dark': isDarkMode}">{{
+            <div class="item-details__field-label" [ngClass]="{'item-details__field-label--dark': isDarkMode()}">{{
                 field.key }}:</div>
-            <div class="item-details__field-value" [ngClass]="{'item-details__field-value--dark': isDarkMode}">
+            <div class="item-details__field-value" [ngClass]="{'item-details__field-value--dark': isDarkMode()}">
                 {{ field.key === 'films' ? films() : field.value }}
             </div>
         </div>

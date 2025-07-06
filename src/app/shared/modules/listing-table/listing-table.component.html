@@ -17,11 +17,10 @@
       class="listing-table__search-input">
   </div>
   }
-
-  @if (filteredData().length) {
+  @if (filteredData()) {
   <div class="listing-table__container" appInfiniteScroll [disabled]="loading()" [hasPreviousData]="hasPreviousData()"
     [hasNextData]="hasMoreData()" (scrolledToTop)="loadPreviousEvent.emit()" (scrolledToBottom)="loadMoreEvent.emit()">
-    <p-table [value]="filteredData()">
+    <p-table [value]="filteredData()!">
       <ng-template pTemplate="header">
         <tr>
           <th>Name</th>
@@ -42,29 +41,25 @@
       </ng-template>
     </p-table>
   </div>
-  } @else {
-  <ng-container [ngTemplateOutlet]="empty"></ng-container>
   }
 
+  @if (filteredData()) {
   <!-- Infinite scroll loading indicator -->
-  @if (loading() && data().length > 0) {
+  @if (loading() && filteredData()!.length > 0) {
   <p class="listing-table__loading listing-table__loading--more">Loading more data...</p>
   }
 
   <!-- Initial loading state -->
-  @if (loading() && data().length === 0) {
+  @if (loading() && filteredData()!.length === 0) {
   <p class="listing-table__loading listing-table__loading--initial">Loading...</p>
   }
 
-  @if (!hasMoreData() && data().length > 0) {
+  @if (!hasMoreData() && filteredData()!.length > 0) {
   <p class="listing-table__message listing-table__message--no-more">No more data to load</p>
   }
 
-  @if (!loading() && data().length === 0) {
+  @if (!loading() && filteredData()!.length === 0) {
   <p class="listing-table__message listing-table__message--empty">No data available</p>
   }
-</ng-template>
-
-<ng-template #empty>
-  <p class="listing-table__message listing-table__message--empty">No data found</p>
+  }
 </ng-template>

@@ -9,7 +9,7 @@ import { BaseItem } from '../../types/table/base-item';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListingTableComponent {
-  data = input<BaseItem[]>([]);
+  data = input<BaseItem[] | null>(null);
   error = input<string | null>(null);
   loading = input<boolean>(false);
   hasMoreData = input<boolean>(true);
@@ -24,7 +24,7 @@ export class ListingTableComponent {
 
   filteredData = computed(() => {
     const currentData = this.data();
-    if (!this.enableSearch() || !this.searchTerm()) {
+    if (!this.enableSearch() || !this.searchTerm() || !currentData) {
       return currentData;
     }
 

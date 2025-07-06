@@ -35,6 +35,7 @@ export const StarshipStore = signalStore(
     withComputed((state) => ({
         starships: computed(() => {
             const pageResults = state.pageResults();
+            if (Object.keys(pageResults).length === 0) return null;
             return Object.entries(pageResults).sort(([page1], [page2]) => +page1 - +page2).flatMap(([, value]) => value).map(
                 (starship) => ({
                     ...starship,
